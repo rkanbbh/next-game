@@ -4,17 +4,298 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Next Game - Top Up Game</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7ff;
+      color: #17172b;
+    }
+
+    header {
+      background: linear-gradient(135deg, #6c2cff, #3210a8);
+      color: white;
+      padding: 22px 7%;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: white;
+      padding: 55px 7%;
+    }
+
+    .hero h1 {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      color: #666;
+      font-size: 17px;
+    }
+
+    .container {
+      width: 86%;
+      max-width: 1200px;
+      margin: 35px auto;
+    }
+
+    .games {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+    }
+
+    .game {
+      background: white;
+      border-radius: 16px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 5px 20px #00000015;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .game:hover {
+      transform: translateY(-5px);
+    }
+
+    .game-icon {
+      font-size: 45px;
+      margin-bottom: 12px;
+    }
+
+    .game h3 {
+      font-size: 17px;
+    }
+
+    .order {
+      margin-top: 40px;
+      background: white;
+      padding: 25px;
+      border-radius: 18px;
+      box-shadow: 0 5px 20px #00000012;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 14px;
+      margin-top: 10px;
+      margin-bottom: 18px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      background: #6c2cff;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #5420d1;
+    }
+
+    footer {
+      margin-top: 60px;
+      padding: 30px;
+      text-align: center;
+      background: #17172b;
+      color: white;
+    }
+  </style>
 </head>
 
 <body>
-  <h1>Next Game</h1>
-  <p>Top Up Game Cepat & Aman</p>
+
+<header>
+  <div class="logo">🎮 NEXT GAME</div>
+</header>
+
+<section class="hero">
+  <h1>Top Up Game Cepat & Aman</h1>
+  <p>Pilih game kamu dan lakukan top up dengan mudah.</p>
+</section>
+
+<div class="container">
 
   <h2>Pilih Game</h2>
-  <p>Free Fire</p>
-  <p>Mobile Legends</p>
-  <p>PUBG Mobile</p>
-  <p>Honor of Kings</p>
+  <br>
+
+  <div class="games">
+
+    <div class="game" onclick="pilihGame('Free Fire')">
+      <div class="game-icon">🔥</div>
+      <h3>Free Fire</h3>
+    </div>
+
+    <div class="game" onclick="pilihGame('Mobile Legends')">
+      <div class="game-icon">⚔️</div>
+      <h3>Mobile Legends</h3>
+    </div>
+
+    <div class="game" onclick="pilihGame('PUBG Mobile')">
+      <div class="game-icon">🔫</div>
+      <h3>PUBG Mobile</h3>
+    </div>
+
+    <div class="game" onclick="pilihGame('Honor of Kings')">
+      <div class="game-icon">👑</div>
+      <h3>Honor of Kings</h3>
+    </div>
+
+    <div class="game" onclick="pilihGame('Valorant')">
+      <div class="game-icon">🎯</div>
+      <h3>Valorant</h3>
+    </div>
+
+    <div class="game" onclick="pilihGame('Genshin Impact')">
+      <div class="game-icon">✨</div>
+      <h3>Genshin Impact</h3>
+    </div>
+
+    <div class="game" onclick="pilihGame('Wuthering Waves')">
+      <div class="game-icon">🌊</div>
+      <h3>Wuthering Waves</h3>
+    </div>
+
+    <div class="game" onclick="pilihGame('Roblox')">
+      <div class="game-icon">🧱</div>
+      <h3>Roblox</h3>
+    </div>
+
+    <div class="game" onclick="pilihGame('Call of Duty Mobile')">
+      <div class="game-icon">💥</div>
+      <h3>Call of Duty Mobile</h3>
+    </div>
+
+    <div class="game" onclick="pilihGame('FC Mobile')">
+      <div class="game-icon">⚽</div>
+      <h3>FC Mobile</h3>
+    </div>
+
+    <div class="game" onclick="pilihGame('eFootball')">
+      <div class="game-icon">⚽</div>
+      <h3>eFootball</h3>
+    </div>
+
+    <div class="game" onclick="pilihGame('Blood Strike')">
+      <div class="game-icon">💣</div>
+      <h3>Blood Strike</h3>
+    </div>
+
+  </div>
+
+  <div class="order">
+
+    <h2>Pesanan</h2>
+    <br>
+
+    <label>Game</label>
+    <input id="game" readonly placeholder="Pilih game terlebih dahulu">
+
+    <label>ID Player</label>
+    <input id="playerId" placeholder="Masukkan ID Player">
+
+    <label>Nominal</label>
+    <select id="nominal">
+      <option>Pilih nominal</option>
+      <option>5 Diamond</option>
+      <option>12 Diamond</option>
+      <option>50 Diamond</option>
+      <option>100 Diamond</option>
+      <option>500 Diamond</option>
+      <option>1000 Diamond</option>
+    </select>
+
+    <label>Pembayaran</label>
+    <select id="payment">
+      <option>Pilih pembayaran</option>
+      <option>QRIS</option>
+      <option>DANA</option>
+      <option>OVO</option>
+      <option>GoPay</option>
+      <option>Transfer Bank</option>
+    </select>
+
+    <button onclick="buatPesanan()">Buat Pesanan</button>
+
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 Next Game</p>
+  <p>Customer Service: 0882008627347</p>
+</footer>
+
+<script>
+  function pilihGame(nama) {
+    document.getElementById("game").value = nama;
+
+    document.querySelector(".order").scrollIntoView({
+      behavior: "smooth"
+    });
+  }
+
+  function buatPesanan() {
+    const game = document.getElementById("game").value;
+    const id = document.getElementById("playerId").value;
+    const nominal = document.getElementById("nominal").value;
+    const payment = document.getElementById("payment").value;
+
+    if (!game) {
+      alert("Silakan pilih game terlebih dahulu.");
+      return;
+    }
+
+    if (!id) {
+      alert("Masukkan ID Player.");
+      return;
+    }
+
+    if (nominal === "Pilih nominal") {
+      alert("Pilih nominal terlebih dahulu.");
+      return;
+    }
+
+    if (payment === "Pilih pembayaran") {
+      alert("Pilih metode pembayaran.");
+      return;
+    }
+
+    const pesan =
+      "Halo Next Game,%0A%0A" +
+      "Saya ingin melakukan top up:%0A" +
+      "Game: " + game + "%0A" +
+      "ID Player: " + id + "%0A" +
+      "Nominal: " + nominal + "%0A" +
+      "Pembayaran: " + payment;
+
+    window.open(
+      "https://wa.me/62882008627347?text=" + pesan,
+      "_blank"
+    );
+  }
+</script>
 
 </body>
 </html>
