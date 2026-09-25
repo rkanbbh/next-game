@@ -1,0 +1,78 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f7ff;
+  color: #17172b;
+}
+
+header {
+  background: linear-gradient(135deg, #6c2cff, #3210a8);
+  color: white;
+  padding: 25px 7%;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.hero {
+  padding: 50px 7%;
+  background: white;
+}
+
+.hero h1 {
+  font-size: 38px;
+  margin-bottom: 12px;
+}
+
+.hero p {
+  color: #666;
+  font-size: 17px;
+}
+
+.container {
+  width: 86%;
+  max-width: 1200px;
+  margin: 35px auto;
+}
+
+.games {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+}
+
+.game {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 5px 20px #00000012;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.game:hover {
+  transform: translateY(-4px);
+}
+
+.game img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+footer {
+  margin-top: 60px;
+  padding: 30px;
+  text-align: center;
+  background: #17172b;
+  color: white;
+}
