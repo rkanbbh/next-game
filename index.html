@@ -1,301 +1,130 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Next Game - Top Up Game</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f7ff;
-      color: #17172b;
-    }
-
-    header {
-      background: linear-gradient(135deg, #6c2cff, #3210a8);
-      color: white;
-      padding: 22px 7%;
-    }
-
-    .logo {
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    .hero {
-      background: white;
-      padding: 55px 7%;
-    }
-
-    .hero h1 {
-      font-size: 40px;
-      margin-bottom: 12px;
-    }
-
-    .hero p {
-      color: #666;
-      font-size: 17px;
-    }
-
-    .container {
-      width: 86%;
-      max-width: 1200px;
-      margin: 35px auto;
-    }
-
-    .games {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 18px;
-    }
-
-    .game {
-      background: white;
-      border-radius: 16px;
-      padding: 25px;
-      text-align: center;
-      box-shadow: 0 5px 20px #00000015;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .game:hover {
-      transform: translateY(-5px);
-    }
-
-    .game-icon {
-      font-size: 45px;
-      margin-bottom: 12px;
-    }
-
-    .game h3 {
-      font-size: 17px;
-    }
-
-    .order {
-      margin-top: 40px;
-      background: white;
-      padding: 25px;
-      border-radius: 18px;
-      box-shadow: 0 5px 20px #00000012;
-    }
-
-    input,
-    select {
-      width: 100%;
-      padding: 14px;
-      margin-top: 10px;
-      margin-bottom: 18px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      font-size: 15px;
-    }
-
-    button {
-      width: 100%;
-      padding: 15px;
-      border: none;
-      border-radius: 10px;
-      background: #6c2cff;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #5420d1;
-    }
-
-    footer {
-      margin-top: 60px;
-      padding: 30px;
-      text-align: center;
-      background: #17172b;
-      color: white;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Next Game - Top Up Game</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f6ff;color:#17172b}
+header{background:linear-gradient(135deg,#5b21b6,#2563eb);color:#fff;padding:26px 16px}
+header h1{margin:0;font-size:32px}header p{margin:7px 0 0;opacity:.9}
+main{max-width:1050px;margin:22px auto;padding:0 14px}
+.card{background:#fff;border-radius:18px;padding:20px;margin-bottom:18px;box-shadow:0 6px 20px #0001}
+.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}
+.game{border:2px solid #e5e7eb;border-radius:14px;padding:13px;background:#fff;cursor:pointer;transition:.15s}
+.game:hover,.game.active{border-color:#6d28d9;background:#f3e8ff}
+.game img{width:58px;height:58px;object-fit:cover;border-radius:13px;display:block;margin-bottom:8px}
+#topup{display:none}.back{background:#eef2ff;color:#3730a3;margin-bottom:14px}
+label{display:block;font-weight:bold;margin:13px 0 7px}
+input,select{width:100%;padding:13px;border:1px solid #cfd4df;border-radius:10px;font-size:16px}
+.nominals{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.nominal{border:2px solid #e5e7eb;border-radius:12px;padding:13px;background:#fff;cursor:pointer}
+.nominal.active{border-color:#2563eb;background:#eff6ff}
+.price{font-weight:bold;color:#2563eb;margin-top:5px}
+.summary{background:#f8fafc;border-radius:12px;padding:15px;line-height:1.8}
+button{border:0;border-radius:12px;padding:13px 18px;font-size:16px;font-weight:bold;cursor:pointer}
+.primary{background:#2563eb;color:#fff;width:100%;margin-top:14px}
+.small{font-size:13px;color:#667085}
+footer{text-align:center;padding:28px;color:#667085}
+</style>
 </head>
-
 <body>
+<header><h1>Next Game</h1><p>Top Up Game Cepat & Aman</p></header>
 
-<header>
-  <div class="logo">🎮 NEXT GAME</div>
-</header>
-
-<section class="hero">
-  <h1>Top Up Game Cepat & Aman</h1>
-  <p>Pilih game kamu dan lakukan top up dengan mudah.</p>
+<main>
+<section id="gameSection" class="card">
+<h2>🎮 Pilih Game</h2>
+<div id="games" class="games"></div>
 </section>
 
-<div class="container">
+<section id="topup" class="card">
+<button class="back" onclick="showGames()">← Kembali ke daftar game</button>
+<h2 id="gameTitle"></h2>
+<label>ID Player</label>
+<input id="playerId" placeholder="Masukkan ID Player" inputmode="numeric">
+<p class="small">Pastikan ID pemain benar sebelum melanjutkan.</p>
 
-  <h2>Pilih Game</h2>
-  <br>
+<h3>Nominal Top Up</h3>
+<div id="nominals" class="nominals"></div>
 
-  <div class="games">
+<label>Metode pembayaran</label>
+<select id="payment">
+<option value="">Pilih pembayaran</option>
+<option>QRIS</option><option>DANA</option><option>OVO</option>
+<option>GoPay</option><option>Transfer Bank</option>
+</select>
 
-    <div class="game" onclick="pilihGame('Free Fire')">
-      <div class="game-icon">🔥</div>
-      <h3>Free Fire</h3>
-    </div>
+<h3>Ringkasan</h3>
+<div id="summary" class="summary">Pilih nominal.</div>
+<button class="primary" onclick="checkout()">Lanjut ke Checkout</button>
+</section>
+</main>
 
-    <div class="game" onclick="pilihGame('Mobile Legends')">
-      <div class="game-icon">⚔️</div>
-      <h3>Mobile Legends</h3>
-    </div>
-
-    <div class="game" onclick="pilihGame('PUBG Mobile')">
-      <div class="game-icon">🔫</div>
-      <h3>PUBG Mobile</h3>
-    </div>
-
-    <div class="game" onclick="pilihGame('Honor of Kings')">
-      <div class="game-icon">👑</div>
-      <h3>Honor of Kings</h3>
-    </div>
-
-    <div class="game" onclick="pilihGame('Valorant')">
-      <div class="game-icon">🎯</div>
-      <h3>Valorant</h3>
-    </div>
-
-    <div class="game" onclick="pilihGame('Genshin Impact')">
-      <div class="game-icon">✨</div>
-      <h3>Genshin Impact</h3>
-    </div>
-
-    <div class="game" onclick="pilihGame('Wuthering Waves')">
-      <div class="game-icon">🌊</div>
-      <h3>Wuthering Waves</h3>
-    </div>
-
-    <div class="game" onclick="pilihGame('Roblox')">
-      <div class="game-icon">🧱</div>
-      <h3>Roblox</h3>
-    </div>
-
-    <div class="game" onclick="pilihGame('Call of Duty Mobile')">
-      <div class="game-icon">💥</div>
-      <h3>Call of Duty Mobile</h3>
-    </div>
-
-    <div class="game" onclick="pilihGame('FC Mobile')">
-      <div class="game-icon">⚽</div>
-      <h3>FC Mobile</h3>
-    </div>
-
-    <div class="game" onclick="pilihGame('eFootball')">
-      <div class="game-icon">⚽</div>
-      <h3>eFootball</h3>
-    </div>
-
-    <div class="game" onclick="pilihGame('Blood Strike')">
-      <div class="game-icon">💣</div>
-      <h3>Blood Strike</h3>
-    </div>
-
-  </div>
-
-  <div class="order">
-
-    <h2>Pesanan</h2>
-    <br>
-
-    <label>Game</label>
-    <input id="game" readonly placeholder="Pilih game terlebih dahulu">
-
-    <label>ID Player</label>
-    <input id="playerId" placeholder="Masukkan ID Player">
-
-    <label>Nominal</label>
-    <select id="nominal">
-      <option>Pilih nominal</option>
-      <option>5 Diamond</option>
-      <option>12 Diamond</option>
-      <option>50 Diamond</option>
-      <option>100 Diamond</option>
-      <option>500 Diamond</option>
-      <option>1000 Diamond</option>
-    </select>
-
-    <label>Pembayaran</label>
-    <select id="payment">
-      <option>Pilih pembayaran</option>
-      <option>QRIS</option>
-      <option>DANA</option>
-      <option>OVO</option>
-      <option>GoPay</option>
-      <option>Transfer Bank</option>
-    </select>
-
-    <button onclick="buatPesanan()">Buat Pesanan</button>
-
-  </div>
-
-</div>
-
-<footer>
-  <p>© 2026 Next Game</p>
-  <p>Customer Service: 0882008627347</p>
-</footer>
+<footer>Next Game © 2026<br>CS: 0882008627347</footer>
 
 <script>
-  function pilihGame(nama) {
-    document.getElementById("game").value = nama;
+const data={"Free Fire":{"unit":"Diamond","items":[["26160 Diamonds",7431018],["28170 Diamonds",6905365],["24150 Diamonds",6402109],["23340 Diamonds",6379712],["23340 Diamonds",6193705],["24150 Diamonds",6155076],["21330 Diamonds",5657696],["21330 Diamonds",5629423],["20100 Diamonds",5360089],["20100 Diamonds",5256533],["19320 Diamonds",5121687],["19320 Diamonds",5103769],["18090 Diamonds",4824080],["18090 Diamonds",4730880],["16080 Diamonds",4288071],["16080 Diamonds",4205226],["14490 Diamonds",3841266],["14490 Diamonds",3827827],["10050 Diamonds",2680266],["10050 Diamonds",2680045],["9660 Diamonds",2560844],["9660 Diamonds",2551885],["8040 Diamonds",2144036],["8040 Diamonds",2102613],["6840 Diamonds",1816431],["6030 Diamonds",1608027],["6840 Diamonds",1576960],["5398 Diamonds",1440383],["6030 Diamonds",1435344],["4830 Diamonds",1280422],["5398 Diamonds",1275942],["4588 Diamonds",1275942],["4588 Diamonds",1231979],["4830 Diamonds",1210708],["4020 Diamonds",1072018],["4020 Diamonds",1051307],["3737 Diamonds",1022389],["3737 Diamonds",1010302],["3453 Diamonds",940678],["3453 Diamonds",928908],["2627 Diamonds",710199],["2627 Diamonds",699201],["2578 Diamonds",695970],["2578 Diamonds",685055],["2380 Diamonds",642326],["2380 Diamonds",631595],["2234 Diamonds",600848],["2234 Diamonds",590058],["2010 Diamonds",536009],["2010 Diamonds",525653],["1706 Diamonds",480978],["1706 Diamonds",480978],["1506 Diamonds",423276],["1506 Diamonds",423276],["1443 Diamonds",404669],["1443 Diamonds",403254],["1159 Diamonds",326419],["1159 Diamonds",325247],["1138 Diamonds",321017],["1138 Diamonds",319833],["1045 Diamonds",293835],["1045 Diamonds",292637],["970 Diamonds",272281],["970 Diamonds",271347],["938 Diamonds",263315],["938 Diamonds",262308],["875 Diamonds",244708],["875 Diamonds",243853],["845 Diamonds",240647],["845 Diamonds",239691],["792 Diamonds",224801],["792 Diamonds",223807],["758 Diamonds",215021],["758 Diamonds",214082],["716 Diamonds",203174],["716 Diamonds",202404],["642 Diamonds",181387],["642 Diamonds",180673],["601 Diamonds",169571],["601 Diamonds",168955],["568 Diamonds",159961],["568 Diamonds",159402],["522 Diamonds",148311],["522 Diamonds",147646],["452 Diamonds",127624],["452 Diamonds",127040],["425 Diamonds",119874],["425 Diamonds",119335],["408 Diamonds",114878],["408 Diamonds",114368],["386 Diamonds",108473],["386 Diamonds",108116],["370 Diamonds",103811],["370 Diamonds",103367],["358 Diamonds",103180],["358 Diamonds",102823],["335 Diamonds",96537],["335 Diamonds",96217],["301 Diamonds",83868],["301 Diamonds",83569],["296 Diamonds",82385],["296 Diamonds",82095],["284 Diamonds",81711],["277 Diamonds",80686],["258 Diamonds",74825],["284 Diamonds",74506],["240 Diamonds",68965],["277 Diamonds",68723],["240 Diamonds",68723],["224 Diamonds",64840],["224 Diamonds",64405],["184 Diamonds",53576],["184 Diamonds",53207],["170 Diamonds",49127],["170 Diamonds",48785],["148 Diamonds",43213],["148 Diamonds",43003],["128 Diamonds",37352],["128 Diamonds",37219],["113 Diamonds",32732],["113 Diamonds",32626],["110 Diamonds",31956],["90 Diamonds",26089],["90 Diamonds",26021],["85 Diamonds",24606],["85 Diamonds",24547],["74 Diamonds",21426],["74 Diamonds",21272],["71 Diamonds",20505],["71 Diamonds",20358],["59 Diamonds",16992],["59 Diamonds",16865],["54 Diamonds",15713],["54 Diamonds",15620],["46 Diamonds",13496],["46 Diamonds",13416],["44 Diamonds",12746],["44 Diamonds",12672],["36 Diamonds",10530],["36 Diamonds",10468],["28 Diamonds",8127],["28 Diamonds",8079],["19 Diamonds",5861],["18 Diamonds",5861],["19 Diamonds",5783],["18 Diamonds",5783],["12 Diamonds",3513],["12 Diamonds",3493],["10 Diamonds",2880],["10 Diamonds",2862],["5 Diamonds",1440],["5 Diamonds",1431]]},"Mobile Legends":{"unit":"Diamond","items":[["5",1500],["12",3000],["19",4500],["28",6500],["36",8000],["44",10000],["59",13000],["85",18000],["100",21000],["170",35000],["240",49000],["296",60000],["408",82000],["568",114000],["875",175000],["1200",238000],["2010",398000],["4830",950000]]},"Magic Chess":{"unit":"Item","items":[["4830 Diamonds",1189422],["2010 Diamonds",516253],["875 Diamonds",228819],["568 Diamonds",147449],["408 Diamonds",109221],["296 Diamonds",78821],["240 Diamonds",64077],["170 Diamonds",45873],["Weekly Card",31128],["85 Diamonds",23301],["59 Diamonds",16384],["Battle for Discounts",15723],["Lukas's Battle Bounty",15723],["44 Diamonds",11650],["28 Diamonds",7980],["19 Diamonds",5428],["12 Diamonds",3514],["5 Diamonds",1605]]},"Honor of Kings":{"unit":"Token","items":[["80 Tokens",15447],["240 Tokens",46643],["400 Tokens",77837],["560 Tokens",109034],["800 + 30 Tokens",155827],["1200 + 45 Tokens",233815],["2400 + 108 Tokens",467780],["4000 + 180 Tokens",779733],["8000 + 360 Tokens",1559619],["16 Tokens",3112]]},"PUBG Mobile":{"unit":"UC","items":[["48000 + 16800 UC",13220980],["36000 + 12600 UC",9915734],["24000 + 8400 UC",6610490],["18000 + 6300 UC",4957867],["12000 + 4200 UC",3305244],["6000 + 2100 UC",1652623],["5700 + 1270 UC",1569424],["5400 + 1235 UC",1486785],["5100 + 1210 UC",1404330],["4800 + 1175 UC",1321689],["4500 + 1150 UC",1239235],["4200 + 970 UC",1156408],["3900 + 935 UC",1073769],["3300 + 875 UC",908673],["3000 + 850 UC",875245],["3180 + 850 UC",826218],["2700 + 420 UC",743207],["2400 + 385 UC",660566],["2100 + 360 UC",578112],["1800 + 325 UC",495471],["1680 + 300 UC",462043],["1620 + 300 UC",445702],["1500 + 300 UC",413016],["1380 + 120 UC",379218],["1320 + 120 UC",362875],["1200 + 120 UC",330190],["1080 + 85 UC",296577],["1020 + 85 UC",280234],["900 + 85 UC",247550],["840 + 60 UC",230465],["780 + 60 UC",214122],["720 + 60 UC",197780],["660 + 60 UC",181437],["540 + 25 UC",147824],["480 + 25 UC",131482],["420 + 25 UC",115139],["360 + 25 UC",98797],["300 + 25 UC",82455],["240 UC",65370],["180 UC",49027],["120 UC",32684],["60 UC",16343]]},"Valorant":{"unit":"VP","items":[["16700 VP",1624036],["16350 VP",1572810],["15100 VP",1467514],["14650 VP",1411546],["13050 VP",1255024],["12000 VP",1148778],["11475 VP",1095655],["11000 VP",1042532],["9000 VP",899292],["7400 VP",742769],["7300 VP",738026],["6350 VP",636523],["5825 VP",583401],["5700 VP",581504],["5350 VP",530278],["4650 VP",475259],["4125 VP",422136],["3650 VP",369013],["3050 VP",318736],["2525 VP",265613],["2050 VP",212490],["1475 VP",159368],["1000 VP",106245],["475 VP",53123]]},"Roblox":{"unit":"Robux","items":[["2000 Robux",394830],["1600 Robux",318860],["1200 Robux",266430],["1000 Robux",224700],["800 Robux",171058],["500 Robux",105823],["400 Robux",96195],["250 Robux",59920]]},"Point Blank":{"unit":"PB Cash","items":[["60.000 PB Cash",456354],["36.000 PB Cash",273813],["24.000 PB Cash",182541],["12.000 PB Cash",91271],["6.000 PB Cash",45636],["2.400 PB Cash",18254],["1.200 PB Cash",9127]]},"Steam Voucher":{"unit":"Voucher","items":[["IDR 600.000",607477],["IDR 400.000",405395],["IDR 250.000",253490],["IDR 120.000",121524],["IDR 90.000",91143],["IDR 60.000",60761],["IDR 45.000",45561],["IDR 12.000",12152],["IDR 8.000",8136],["IDR 6.000",6054]]},"Blood Strike":{"unit":"Gold","items":[["100 + 5 Golds",13800],["300 + 20 Golds",41100],["500 + 40 Golds",68500],["600 + 45 Gold",82200],["800 + 60 Gold",109500],["1000 + 100 Golds",136800],["1200 + 110 Gold",164300],["1500 + 140 Gold",205200],["2000 + 260 Golds",273600],["2500 + 300 Gold",342000],["3000 + 360 Gold",410300],["4000 + 520 Gold",547100],["5000 + 800 Golds",683800],["6000 + 900 Gold",820600],["7000 + 1060 Gold",957400],["8000 + 1160 Gold",1094100],["9000 + 1260 Gold",1230900],["10000 + 1600 Gold",1367600],["15000 + 2400 Gold",2051400],["20000 + 3200 Gold",2735200],["25000 + 4000 Gold",3419000],["50000 + 8000 Gold",6838000]]},"Call of Duty Mobile":{"unit":"CP","items":[["7656 CP",928459],["3564 CP",464230],["2060 CP",278538],["1373 CP",185692],["645 CP",92846],["321 CP",46423],["128 CP",18569],["63 CP",9285]]},"Delta Force":{"unit":"Delta Coins","items":[["19440 + 5832 Delta Coins",4530325],["12960 + 3888 Delta Coins",3020217],["6480 + 1944 Delta Coins",1510108],["3280 + 834 Delta Coins",755055],["1680 + 385 Delta Coins",377675],["1280 + 264 Delta Coins",302201],["680 + 105 Delta Coins",151248],["420 + 62 Delta Coins",107865],["300 + 36 Delta Coins",78447],["60 + 3 Delta Coins",15750],["30 + 2 Delta Coins",8024],["18 + 1 Delta Coins",5349]]}};
+const logos={"Free Fire":"gambar/ff.png","Mobile Legends":"gambar/ml.png","Magic Chess":"gambar/magicchess.png","Honor of Kings":"gambar/hok.png","PUBG Mobile":"gambar/pubg.png","Valorant":"gambar/valorant.png","Roblox":"gambar/roblox.png","Point Blank":"gambar/pointblank.png","Steam Voucher":"gambar/steam.png","Blood Strike":"gambar/bloodstrike.png","Call of Duty Mobile":"gambar/codm.png","Delta Force":"gambar/deltaforce.png"};
+let selectedGame="";
+let selectedItem=null;
 
-    document.querySelector(".order").scrollIntoView({
-      behavior: "smooth"
-    });
-  }
+const money=n=>new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(n);
 
-  function buatPesanan() {
-    const game = document.getElementById("game").value;
-    const id = document.getElementById("playerId").value;
-    const nominal = document.getElementById("nominal").value;
-    const payment = document.getElementById("payment").value;
+function renderGames(){
+ const el=document.getElementById("games");el.innerHTML="";
+ Object.keys(data).forEach(game=>{
+   const b=document.createElement("div");b.className="game";
+   b.innerHTML=<img src="${logos[game]||''}" onerror="this.style.display='none'><b>${game}</b>;
+   b.onclick=()=>openGame(game);el.appendChild(b);
+ });
+}
 
-    if (!game) {
-      alert("Silakan pilih game terlebih dahulu.");
-      return;
-    }
+function openGame(game){
+ selectedGame=game;selectedItem=null;
+ document.getElementById("gameSection").style.display="none";
+ document.getElementById("topup").style.display="block";
+ document.getElementById("gameTitle").textContent="Top Up "+game;
+ renderNominals();updateSummary();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
 
-    if (!id) {
-      alert("Masukkan ID Player.");
-      return;
-    }
+function showGames(){
+ document.getElementById("topup").style.display="none";
+ document.getElementById("gameSection").style.display="block";
+ window.scrollTo({top:0,behavior:"smooth"});
+}
 
-    if (nominal === "Pilih nominal") {
-      alert("Pilih nominal terlebih dahulu.");
-      return;
-    }
+function renderNominals(){
+ const el=document.getElementById("nominals");el.innerHTML="";
+ data[selectedGame].items.forEach(([nominal,price],i)=>{
+   const b=document.createElement("div");
+   b.className="nominal"+(selectedItem&&selectedItem.i===i?" active":"");
+   b.innerHTML=<div>${nominal}</div><div class="price">${money(price)}</div>;
+   b.onclick=()=>{selectedItem={i,nominal,price};renderNominals();updateSummary()};
+   el.appendChild(b);
+ });
+}
 
-    if (payment === "Pilih pembayaran") {
-      alert("Pilih metode pembayaran.");
-      return;
-    }
+function updateSummary(){
+ const id=document.getElementById("playerId").value.trim();
+ const pay=document.getElementById("payment").value;
+ document.getElementById("summary").innerHTML=selectedItem
+ ? <b>Game:</b> ${selectedGame}<br><b>ID Player:</b> ${id||"-"}<br><b>Nominal:</b> ${selectedItem.nominal}<br><b>Total:</b> ${money(selectedItem.price)}<br><b>Pembayaran:</b> ${pay||"-"}
+ : "Pilih nominal.";
+}
+document.getElementById("playerId").addEventListener("input",updateSummary);
+document.getElementById("payment").addEventListener("change",updateSummary);
 
-    const pesan =
-      "Halo Next Game,%0A%0A" +
-      "Saya ingin melakukan top up:%0A" +
-      "Game: " + game + "%0A" +
-      "ID Player: " + id + "%0A" +
-      "Nominal: " + nominal + "%0A" +
-      "Pembayaran: " + payment;
+function checkout(){
+ const id=document.getElementById("playerId").value.trim();
+ const pay=document.getElementById("payment").value;
+ if(!id)return alert("Masukkan ID Player terlebih dahulu.");
+ if(!selectedItem)return alert("Pilih nominal terlebih dahulu.");
+ if(!pay)return alert("Pilih metode pembayaran.");
+ alert("Data checkout sudah siap. Payment gateway dan API supplier akan disambungkan pada tahap berikutnya.");
+}
 
-    window.open(
-      "https://wa.me/62882008627347?text=" + pesan,
-      "_blank"
-    );
-  }
+renderGames();
 </script>
-
 </body>
 </html>
