@@ -1,9 +1,13 @@
 {
   "name": "next-game",
-  "version": "1.0.0",
-  "description": "Backend Next Game",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Next Game top-up site with Midtrans Snap payment gateway",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
