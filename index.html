@@ -110,7 +110,7 @@ function renderNominals(){
  data[selectedGame].items.forEach(([nominal,price],i)=>{
    const b=document.createElement("div");
    b.className="nominal"+(selectedItem&&selectedItem.i===i?" active":"");
-b.innerHTML = '<div>' + nominal + '</div><div class="price">' + money(price) + '</div>';
+b.innerHTML=<div>${nominal}</div><div class="price">${money(price)}</div>;
    b.onclick=()=>{selectedItem={i,nominal,price};renderNominals();updateSummary()};
    el.appendChild(b);
  });
