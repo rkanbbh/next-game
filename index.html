@@ -74,7 +74,7 @@ function renderGames(){
  const el=document.getElementById("games");el.innerHTML="";
  Object.keys(data).forEach(game=>{
    const b=document.createElement("div");b.className="game";
-b.innerHTML=<img src="${logos[game]||''}" onerror="this.style.display='none'"><b>${game}</b>;
+b.innerHTML='<img src="'+(logos[game]||'')+'" onerror="this.style.display=\'none\'"><b>'+game+'</b>';
    b.onclick=()=>openGame(game);el.appendChild(b);
  });
 }
