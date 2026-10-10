@@ -26,6 +26,70 @@ button{border:0;border-radius:12px;padding:13px 18px;font-size:16px;font-weight:
 .primary{background:#2563eb;color:#fff;width:100%;margin-top:14px}
 .small{font-size:13px;color:#667085}
 footer{text-align:center;padding:28px;color:#667085}
+/* Tampilan HP Next Game */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
+  header {
+    padding: 18px 14px;
+  }
+
+  header h1 {
+    font-size: 26px;
+  }
+
+  main {
+    width: auto;
+    padding: 12px;
+  }
+
+  .card {
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+
+  .games {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .game {
+    min-width: 0;
+    padding: 10px;
+  }
+
+  .game img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+  }
+
+  .nominals,
+  #nominals {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .nominal {
+    min-width: 0;
+    padding: 10px;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+  }
+
+  input,
+  select,
+  button {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  footer {
+    padding: 18px 10px;
+  }
+}
 </style>
 </head>
 <body>
