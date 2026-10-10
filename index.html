@@ -119,9 +119,9 @@ function renderNominals(){
 function updateSummary(){
  const id=document.getElementById("playerId").value.trim();
  const pay=document.getElementById("payment").value;
- document.getElementById("summary").innerHTML=selectedItem
- ? <b>Game:</b> ${selectedGame}<br><b>ID Player:</b> ${id||"-"}<br><b>Nominal:</b> ${selectedItem.nominal}<br><b>Total:</b> ${money(selectedItem.price)}<br><b>Pembayaran:</b> ${pay||"-"}
- : "Pilih nominal.";
+document.getElementById("summary").innerHTML = selectedItem
+  ? <b>Game:</b> ${selectedGame}<br><b>ID Player:</b> ${id || "-"}<br><b>Nominal:</b> ${selectedItem.nominal}<br><b>Total:</b> ${money(selectedItem.price)}<br><b>Pembayaran:</b> ${pay || "-"}
+  : "Pilih nominal.";
 }
 document.getElementById("playerId").addEventListener("input",updateSummary);
 document.getElementById("payment").addEventListener("change",updateSummary);
