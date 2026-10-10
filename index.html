@@ -191,7 +191,7 @@ function renderNominals() {
     items = [...unique.values()];
   }
 
-  items.sort((a, b) => a.price - b.price);
+  items.sort((murah,mahal) => murah.price - mahal.price);
 
   items.forEach(({ nominal, price }, i) => {
     const b = document.createElement("div");
