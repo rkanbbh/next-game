@@ -6,13 +6,13 @@
 <title>Next Game - Top Up Game</title>
 <style>
 *{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#0b1020;color:#f1f5ff}
-header{background:linear-gradient(135deg,#5b21b6,#2563eb);color:#fff;padding:26px 16px}
+header{background:linear-gradient(135deg,#0b1020,#4c1d95,#2563eb);color:#fff;padding:26px 16px}
 header h1{margin:0;font-size:32px}header p{margin:7px 0 0;opacity:.9}
 main{max-width:1050px;margin:22px auto;padding:0 14px}
-.card{background:#fff;border-radius:18px;padding:20px;margin-bottom:18px;box-shadow:0 6px 20px #0001}
+.card{background:#111a2e;color:#f1f5ff;border:1px solid #293653;border-radius:18px;padding:20px;margin-bottom:18px;box-shadow:0 6px 20px #0005}
 .games{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}
-.game{border:2px solid #e5e7eb;border-radius:14px;padding:13px;background:#fff;cursor:pointer;transition:.15s}
-.game:hover,.game.active{border-color:#6d28d9;background:#f3e8ff}
+.game{border:1px solid #334155;border-radius:14px;padding:13px;background:#111a2e;color:#f1f5ff;cursor:pointer;transition:.15s}
+.game:hover,.game.active{border-color:#8b5cf6;background:#1e1b4b;box-shadow:0 0 12px #6366f155}
 .game img{width:58px;height:58px;object-fit:cover;border-radius:13px;display:block;margin-bottom:8px}
 #topup{display:none}.back{background:#eef2ff;color:#3730a3;margin-bottom:14px}
 label{display:block;font-weight:bold;margin:13px 0 7px}
@@ -23,7 +23,7 @@ input,select{width:100%;padding:13px;border:1px solid #cfd4df;border-radius:10px
 .price{font-weight:bold;color:#2563eb;margin-top:5px}
 .summary{background:#f8fafc;border-radius:12px;padding:15px;line-height:1.8}
 button{border:0;border-radius:12px;padding:13px 18px;font-size:16px;font-weight:bold;cursor:pointer}
-.primary{background:#2563eb;color:#fff;width:100%;margin-top:14px}
+button.primary{background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff;width:100%;margin-top:14px;border:0;box-shadow:0 0 12px #6366f155}
 .small{font-size:13px;color:#667085}
 footer{text-align:center;padding:28px;color:#667085}
 /* Tampilan HP Next Game */
