@@ -169,15 +169,47 @@ function showGames(){
  window.scrollTo({top:0,behavior:"smooth"});
 }
 
-function renderNominals(){
- const el=document.getElementById("nominals");el.innerHTML="";
- data[selectedGame].items.forEach(([nominal,price],i)=>{
-   const b=document.createElement("div");
-   b.className="nominal"+(selectedItem&&selectedItem.i===i?" active":"");
-b.innerHTML = "<div>" + nominal + "</div><div class=\"price\">" + money(price) + "</div>";
-   b.onclick=()=>{selectedItem={i,nominal,price};renderNominals();updateSummary()};
-   el.appendChild(b);
- });
+function renderNominals() {
+  const el = document.getElementById("nominals");
+  el.innerHTML = "";
+
+  let items = data[selectedGame].items.map(([nominal, price]) => ({
+    nominal,
+    price: selectedGame === "Free Fire" ? price - 400 : price
+  }));
+
+  if (selectedGame === "Free Fire") {
+    const unique = new Map();
+
+    items.forEach(item => {
+      const key = item.nominal;
+      if (!unique.has(key) || item.price < unique.get(key).price) {
+        unique.set(key, item);
+      }
+    });
+
+    items = [...unique.values()];
+  }
+
+  items.sort((a, b) => a.price - b.price);
+
+  items.forEach(({ nominal, price }, i) => {
+    const b = document.createElement("div");
+    b.className = "nominal" +
+      (selectedItem && selectedItem.i === i ? " active" : "");
+
+    b.innerHTML =
+      "<div>" + nominal + "</div>" +
+      '<div class="price">' + money(price) + "</div>";
+
+    b.onclick = () => {
+      selectedItem = { i, nominal, price };
+      renderNominals();
+      updateSummary();
+    };
+
+    el.appendChild(b);
+  });
 }
 
 function updateSummary(){
