@@ -221,13 +221,15 @@ document.getElementById("summary").innerHTML = selectedItem
 document.getElementById("playerId").addEventListener("input",updateSummary);
 document.getElementById("payment").addEventListener("change",updateSummary);
 
-function checkout(){
- const id=document.getElementById("playerId").value.trim();
- const pay=document.getElementById("payment").value;
- if(!id)return alert("Masukkan ID Player terlebih dahulu.");
- if(!selectedItem)return alert("Pilih nominal terlebih dahulu.");
- if(!pay)return alert("Pilih metode pembayaran.");
- alert("Data checkout sudah siap. Payment gateway dan API supplier akan disambungkan pada tahap berikutnya.");
+async function checkout() {
+  const id = document.getElementById("playerId").value.trim();
+  const pay = document.getElementById("payment").value;
+
+  if (!id) return alert("Masukkan ID Player terlebih dahulu.");
+  if (!selectedItem) return alert("Pilih nominal terlebih dahulu.");
+  if (!pay) return alert("Pilih metode pembayaran.");
+
+  alert("Checkout otomatis belum diaktifkan. Silakan lanjutkan setelah backend pembayaran siap.");
 }
 
 renderGames();
